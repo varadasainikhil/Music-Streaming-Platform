@@ -4,18 +4,6 @@ let audioElement = new Audio("songs/1.mp3");
 let masterPlay = document.getElementById("play-pause");
 let progressBar = document.getElementById("progressBar");
 
-let songs = [
-    {songName : "Random Song 1", songPath: "songs/1.mp3", songCover: "covers/1.jpg"},
-    {songName : "Random Song 2", songPath: "songs/2.mp3", songCover: "covers/2.jpg"},
-    {songName : "Random Song 3", songPath: "songs/3.mp3", songCover: "covers/3.jpg"},
-    {songName : "Random Song 4", songPath: "songs/4.mp3", songCover: "covers/4.jpg"},
-    {songName : "Random Song 5", songPath: "songs/5.mp3", songCover: "covers/5.jpg"},
-    {songName : "Random Song 6", songPath: "songs/6.mp3", songCover: "covers/6.jpg"},
-    {songName : "Random Song 7", songPath: "songs/7.mp3", songCover: "covers/7.jpg"},
-    {songName : "Random Song 8", songPath: "songs/8.mp3", songCover: "covers/8.jpg"},
-    {songName : "Random Song 9", songPath: "songs/9.mp3", songCover: "covers/9.jpg"},
-    {songName : "Random Song 10", songPath: "songs/10.mp3", songCover: "covers/10.jpg"}
-];
 progressBar.value = 0;
 
 // Play and Pause using the Main Play Button
