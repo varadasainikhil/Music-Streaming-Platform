@@ -39,6 +39,17 @@ nav ul li{
     border-radius: 15px;
     padding: 2%;
 }
+.songListAndAlbumCover{
+    display: flex;
+}
+
+.albumCover{
+    height: 56.1vh;
+    position: relative;
+    left: 57px;
+    bottom: 56px;
+}
+
 .bottom{
     bottom: 0;
     position: sticky;
@@ -87,6 +98,7 @@ nav ul li{
     width: 200px;
     padding-right: 100px;
 }
+
 .highlightPlayingSong{
     opacity: 100%;
 }

@@ -15,7 +15,8 @@ let songs = [
     {songName : "Random Song 8", songPath: "songs/8.mp3", songCover: "covers/8.jpg"},
     {songName : "Random Song 9", songPath: "songs/9.mp3", songCover: "covers/9.jpg"},
     {songName : "Random Song 10", songPath: "songs/10.mp3", songCover: "covers/10.jpg"}
-]
+];
+progressBar.value = 0;
 
 // Play and Pause using the Main Play Button
 masterPlay.addEventListener("click",()=>{
@@ -39,6 +40,7 @@ document.getElementById("previousTrack").addEventListener("click", ()=>{
     else {
         songIndex--;
     }
+    progressBar.value = 0;
     audioElement.src=`songs/${songIndex+1}.mp3`;
     masterPlay.classList.remove("fa-circle-play");
     masterPlay.classList.add("fa-circle-pause");
@@ -54,6 +56,7 @@ document.getElementById("nextTrack").addEventListener("click", ()=>{
     else {
         songIndex++;
     }
+    progressBar.value = 0;
     audioElement.src=`songs/${songIndex+1}.mp3`;
     masterPlay.classList.remove("fa-circle-play");
     masterPlay.classList.add("fa-circle-pause");
@@ -65,16 +68,55 @@ document.getElementById("nextTrack").addEventListener("click", ()=>{
 document.addEventListener("click",()=>{
     for (let i = 0; i <= 9 ; i++) {
         if (i === songIndex){
-            document.getElementById(`song-${songIndex+1}`).classList.add("highlightPlayingSong");
+            document.getElementById(`song-${i+1}`).classList.add("highlightPlayingSong");
         }
         else{
-            document.getElementById(`song-${songIndex+1}`).classList.remove("highlightPlayingSong");
+            document.getElementById(`song-${i+1}`).classList.remove("highlightPlayingSong");
         }
     }
-
 })
 
-progressBar.addEventListener("time", ()=>{
+// For loop for the playing the song on the click of the songName
+for (let i = 0; i <= 9; i++) {
+    document.getElementById(`song-${i+1}`).addEventListener("click",()=>{
+        progressBar.value = 0;
+        songIndex = i;
+        audioElement.src=`songs/${i+1}.mp3`;
+        masterPlay.classList.remove("fa-circle-play");
+        masterPlay.classList.add("fa-circle-pause");
+        audioElement.play();
+    });
+}
+
+// Showing the correct Album Cover
+document.addEventListener("click",()=>{
+    for (let i = 0; i <= 9 ; i++) {
+        if (i === songIndex){
+            document.getElementById(`albumCover`).src=`covers/${i+1}.jpg`;
+        }
+    }
+});
+
+// For the seek bar updation
+audioElement.addEventListener("timeupdate", ()=>{
     console.log('timeupdate');
     // Updating the Seek Bar
+    progess = (audioElement.currentTime/audioElement.duration)*100;
+    progressBar.value = progess;
+});
+
+// For pausing and playing using Space Bar
+document.addEventListener("keydown", (event)=>{
+    if(event.key === " "){
+        if(audioElement.paused){
+            masterPlay.classList.remove("fa-circle-play");
+            masterPlay.classList.add("fa-circle-pause");
+            audioElement.play();
+        }
+        else{
+            masterPlay.classList.remove("fa-circle-pause");
+            masterPlay.classList.add("fa-circle-play");
+            audioElement.pause();
+        }
+    }
 })
