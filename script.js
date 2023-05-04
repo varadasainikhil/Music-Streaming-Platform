@@ -99,10 +99,9 @@ document.addEventListener("click",()=>{
 
 // For the seek bar updation
 audioElement.addEventListener("timeupdate", ()=>{
-    console.log('timeupdate');
     // Updating the Seek Bar
-    progess = (audioElement.currentTime/audioElement.duration)*100;
-    progressBar.value = progess;
+    progress = (audioElement.currentTime/audioElement.duration)*100;
+    progressBar.value = progress;
 });
 
 // For pausing and playing using Space Bar
@@ -119,4 +118,12 @@ document.addEventListener("keydown", (event)=>{
             audioElement.pause();
         }
     }
+})
+
+// Seek Bar input
+progressBar.addEventListener("change",()=>{
+    audioElement.pause();
+    audioElement.currentTime = progressBar.value * audioElement.duration/100;
+    console.log(audioElement.currentTime);
+    audioElement.play();
 })
